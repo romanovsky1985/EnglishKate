@@ -1,0 +1,13 @@
+server:
+  port: 3113
+
+spring:
+  application:
+    name: EnglishKate
+  datasource:
+    url: "jdbc:h2:mem:EnglishKate"
+    username: admin
+    password: qwerty
+
+h2:
+  console: enabled
