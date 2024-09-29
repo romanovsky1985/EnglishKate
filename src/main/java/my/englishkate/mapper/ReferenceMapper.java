@@ -1,7 +1,7 @@
 package my.englishkate.mapper;
 
 import jakarta.persistence.EntityManager;
-import my.englishkate.model.BaseEntity;
+import my.englishkate.entity.BaseEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.TargetType;

@@ -1,4 +1,4 @@
-package my.englishkate.model;
+package my.englishkate.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "themes")
 @Data
-public class ThemeModel implements BaseEntity {
+public class ThemeEntity implements BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,5 +18,5 @@ public class ThemeModel implements BaseEntity {
     private String instruction;
 
     @OneToMany(mappedBy = "theme")
-    private List<QuestionModel> questions;
+    private List<QuestionEntity> questions;
 }

@@ -1,4 +1,4 @@
-package my.englishkate.model;
+package my.englishkate.entity;
 
 public interface BaseEntity {
 }

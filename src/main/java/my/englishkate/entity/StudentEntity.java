@@ -1,4 +1,4 @@
-package my.englishkate.model;
+package my.englishkate.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 @Entity
 @Table(name = "students")
 @Data
-public class StudentModel implements BaseEntity {
+public class StudentEntity implements BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

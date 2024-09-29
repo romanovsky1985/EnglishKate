@@ -1,7 +1,8 @@
 package my.englishkate.service;
 
 import my.englishkate.dto.ThemeCreateDTO;
-import my.englishkate.model.ThemeModel;
+import my.englishkate.entity.ThemeEntity;
+import my.englishkate.mapper.ThemeMapper;
 import my.englishkate.repository.ThemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,13 +11,17 @@ import org.springframework.stereotype.Service;
 public class ThemeService {
     @Autowired
     private ThemeRepository themeRepository;
+    @Autowired
+    private ThemeMapper themeMapper;
 
-    public ThemeModel getById(Long id) {
-        ThemeModel theme = themeRepository.findById(id).orElseThrow();
+    public ThemeEntity getById(Long id) {
+        ThemeEntity theme = themeRepository.findById(id).orElseThrow();
         return theme;
     }
 
-    public ThemeModel create(ThemeCreateDTO createDTO) {
-
+    public ThemeEntity create(ThemeCreateDTO createDTO) {
+        ThemeEntity theme = themeMapper.map(createDTO);
+        themeRepository.save(theme);
+        return theme;
     }
 }

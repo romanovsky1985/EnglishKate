@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question</title>
+</head>
+<body>
+  <h1 align="center" th:utext = "${pageDTO.title}"></h1>
+  <h3 th:utext = "${pageDTO.instruction}"></h3>
+  <h3 th:utext = "${pageDTO.text}"></h3>
+  <form method="POST" th:action="@{'/english/question/' + ${pageDTO.questionId}}">
+      <input type="text" name="answer"></input><br>
+      <button type="submit">Ответить</button>
+  </form>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package my.englishkate.model;
+package my.englishkate.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 @Entity
 @Table(name = "questions")
 @Data
-public class QuestionModel implements BaseEntity {
+public class QuestionEntity implements BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,6 +16,6 @@ public class QuestionModel implements BaseEntity {
     private String answer;
 
     @ManyToOne
-    private ThemeModel theme;
+    private ThemeEntity theme;
 
 }
