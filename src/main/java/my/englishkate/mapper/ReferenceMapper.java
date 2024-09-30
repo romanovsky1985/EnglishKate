@@ -1,6 +1,7 @@
 package my.englishkate.mapper;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import my.englishkate.entity.BaseEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
@@ -13,6 +14,13 @@ public class ReferenceMapper {
     private EntityManager entityManager;
 
     public <T extends BaseEntity> T toEntity(Long id, @TargetType Class<T> entityClass) {
-        return id != null ? entityManager.find(entityClass, id) : null;
+        if (id == null) {
+            return null;
+        }
+        T entity = entityManager.find(entityClass, id);
+        if (entity == null) {
+            throw new EntityNotFoundException(entityClass.getName() + " id: " + id);
+        }
+        return entity;
     }
 }

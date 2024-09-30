@@ -23,9 +23,9 @@ public class DataInitializer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        themeService.create(new ThemeCreateDTO("Предлоги времени", "Укажите пропущенный предлог"));
+        themeService.create(new ThemeCreateDTO("Предлоги времени", "Укажите пропущенный предлог:"));
         ThemeEntity colorTheme = themeService.create(
-                new ThemeCreateDTO("Набор английских цветов", "Укажите русский перевод"));
+                new ThemeCreateDTO("Набор английских цветов", "Укажите русский перевод:"));
         questionService.create(new QuestionCreateDTO("blue", "синий", colorTheme.getId()));
         questionService.create(new QuestionCreateDTO("red", "красный", colorTheme.getId()));
         questionService.create(new QuestionCreateDTO("yellow", "желтый", colorTheme.getId()));

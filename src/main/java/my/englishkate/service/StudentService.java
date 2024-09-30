@@ -5,6 +5,8 @@ import my.englishkate.entity.StudentEntity;
 import my.englishkate.mapper.StudentMapper;
 import my.englishkate.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
@@ -28,8 +30,12 @@ public class StudentService implements UserDetailsManager {
         return student;
     }
 
-
-
+    public Long getCurrentStudentId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        StudentEntity student = (StudentEntity) authentication.getPrincipal();
+        System.out.println("DEBUGG: studentId = " + student.getId());
+        return student.getId();
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

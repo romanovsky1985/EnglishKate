@@ -8,4 +8,7 @@ public class PageQuestionDTO {
     private String instruction;
     private String text;
     private Long questionId;
+    private String studentName;
+    private Integer answersCount;
+    private Integer wrongCount;
 }
