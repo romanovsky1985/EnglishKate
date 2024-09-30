@@ -35,13 +35,12 @@ public class QuestionController {
 
     @GetMapping("")
     public String getRandomQuestion() {
-        // TODO: получаем id нужных тем у пользователя
-        long themeId = 2;
-
+        Random rand = new Random();
+        StudentEntity student = studentService.getById(studentService.getCurrentStudentId());
+        long themeId = student.getThemes().get(rand.nextInt(student.getThemes().size())).getId();
         ThemeEntity theme = themeService.getById(themeId);
-        int index = new Random().nextInt(theme.getQuestions().size());
-        long id = theme.getQuestions().get(index).getId();
-        return "redirect:/english/question/" + id;
+        long questionId = theme.getQuestions().get(rand.nextInt(theme.getQuestions().size())).getId();
+        return "redirect:/english/question/" + questionId;
     }
 
     @GetMapping("/{id}")
@@ -49,7 +48,7 @@ public class QuestionController {
         QuestionEntity question = questionService.getById(id);
         ThemeEntity theme = question.getTheme();
         StudentEntity student = studentService.getById(studentService.getCurrentStudentId());
-        
+
         PageQuestionDTO pageDTO = new PageQuestionDTO();
         pageDTO.setTitle(theme.getTitle());
         pageDTO.setInstruction(theme.getInstruction());

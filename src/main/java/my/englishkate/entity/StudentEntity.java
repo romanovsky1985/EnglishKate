@@ -2,6 +2,7 @@ package my.englishkate.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import my.englishkate.entity.mtm.StudentThemeMTM;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "students")
@@ -32,6 +32,9 @@ public class StudentEntity implements BaseEntity, UserDetails {
 
     @OneToMany(mappedBy = "student")
     private List<AnswerEntity> answers;
+
+    @OneToMany(mappedBy = "student")
+    private List<StudentThemeMTM> themes;
 
     @Override
     public String getPassword() {

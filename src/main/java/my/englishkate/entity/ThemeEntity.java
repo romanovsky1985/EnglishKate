@@ -2,6 +2,7 @@ package my.englishkate.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import my.englishkate.entity.mtm.StudentThemeMTM;
 
 import java.util.List;
 
@@ -19,4 +20,8 @@ public class ThemeEntity implements BaseEntity {
 
     @OneToMany(mappedBy = "theme")
     private List<QuestionEntity> questions;
+
+    @OneToMany(mappedBy = "theme")
+    private List<StudentThemeMTM> students;
+
 }
