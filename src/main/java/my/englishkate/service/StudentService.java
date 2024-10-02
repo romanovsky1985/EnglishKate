@@ -3,10 +3,8 @@ package my.englishkate.service;
 import my.englishkate.dto.StudentCreateDTO;
 import my.englishkate.entity.StudentEntity;
 import my.englishkate.entity.ThemeEntity;
-import my.englishkate.entity.mtm.StudentThemeMTM;
 import my.englishkate.mapper.StudentMapper;
 import my.englishkate.repository.StudentRepository;
-import my.englishkate.repository.mtm.StudentThemeMTMRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,18 +12,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class StudentService implements UserDetailsManager {
     @Autowired
     private StudentRepository studentRepository;
-    @Autowired
-    private StudentThemeMTMRepository studentThemeMTMRepository;
     @Autowired
     private StudentMapper studentMapper;
     @Autowired
@@ -46,17 +38,15 @@ public class StudentService implements UserDetailsManager {
     public Long getCurrentStudentId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         StudentEntity student = (StudentEntity) authentication.getPrincipal();
-        System.out.println("DEBUGG: studentId = " + student.getId());
         return student.getId();
     }
 
+    //@Transactional
     public void addTheme(Long studentId, Long themeId) {
         StudentEntity student = studentRepository.findById(studentId).orElseThrow();
         ThemeEntity theme = themeService.getById(themeId);
-        StudentThemeMTM mtm = new StudentThemeMTM();
-        mtm.setStudent(student);
-        mtm.setTheme(theme);
-        studentThemeMTMRepository.save(mtm);
+        student.getThemes().add(theme);
+        studentRepository.save(student);
     }
 
     @Override

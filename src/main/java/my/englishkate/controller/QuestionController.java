@@ -14,6 +14,7 @@ import my.englishkate.service.StudentService;
 import my.englishkate.service.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,20 +35,13 @@ public class QuestionController {
     private StudentService studentService;
 
     @GetMapping("")
-    public String getRandomQuestion() {
+    public String getRandomQuestion(Model model) {
         Random rand = new Random();
+        //System.out.println("DEBUG: start form random question");
         StudentEntity student = studentService.getById(studentService.getCurrentStudentId());
-        long themeId = student.getThemes().get(rand.nextInt(student.getThemes().size())).getId();
-        ThemeEntity theme = themeService.getById(themeId);
-        long questionId = theme.getQuestions().get(rand.nextInt(theme.getQuestions().size())).getId();
-        return "redirect:/english/question/" + questionId;
-    }
-
-    @GetMapping("/{id}")
-    public ModelAndView getQuestion(@PathVariable Long id) {
-        QuestionEntity question = questionService.getById(id);
-        ThemeEntity theme = question.getTheme();
-        StudentEntity student = studentService.getById(studentService.getCurrentStudentId());
+        ThemeEntity theme = student.getThemes().get(rand.nextInt(student.getThemes().size()));
+        QuestionEntity question = theme.getQuestions().get(rand.nextInt(theme.getQuestions().size()));
+        //System.out.println("DEBUG: end form random question");
 
         PageQuestionDTO pageDTO = new PageQuestionDTO();
         pageDTO.setTitle(theme.getTitle());
@@ -58,8 +52,12 @@ public class QuestionController {
         pageDTO.setAnswersCount(student.getAnswers().size());
         pageDTO.setWrongCount(student.getAnswers().size() -
                 (int)student.getAnswers().stream().filter(AnswerEntity::getResult).count());
-        ModelAndView modelAndView = new ModelAndView("question");
-        modelAndView.addObject("pageDTO", pageDTO);
-        return modelAndView;
+        model.addAttribute("pageDTO", pageDTO);
+        return "question";
+
+
+
+
     }
+
 }

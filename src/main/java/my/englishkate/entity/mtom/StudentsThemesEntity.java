@@ -1,4 +1,4 @@
-package my.englishkate.entity.mtm;
+package my.englishkate.entity.mtom;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,7 +8,7 @@ import my.englishkate.entity.ThemeEntity;
 @Entity
 @Table(name = "students_themes")
 @Data
-public class StudentThemeMTM {
+public class StudentsThemesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

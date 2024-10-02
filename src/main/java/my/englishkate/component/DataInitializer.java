@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class DataInitializer implements ApplicationRunner {
@@ -23,6 +24,7 @@ public class DataInitializer implements ApplicationRunner {
     private StudentService studentService;
 
     @Override
+    @Transactional
     public void run(ApplicationArguments args) {
         ThemeEntity animalTheme = themeService.create(
                 new ThemeCreateDTO("Набор слов \"животные\"", "Укажите перевод:"));
@@ -45,5 +47,7 @@ public class DataInitializer implements ApplicationRunner {
                 new StudentCreateDTO("Иван", "Иванов", "qwerty", "test", true));
         studentService.addTheme(student.getId(), animalTheme.getId());
         studentService.addTheme(student.getId(), colorTheme.getId());
+        studentService.addTheme(student.getId(), colorTheme.getId());
+
     }
 }
