@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Random;
 
 @Controller
-@RequestMapping("/english/question")
 public class QuestionController {
     @Autowired
     private QuestionService questionService;
@@ -31,7 +30,7 @@ public class QuestionController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("")
+    @GetMapping("/english/question")
     public String getRandomQuestion(Model model) {
         Random rand = new Random();
         // тянем из базы текущего пользователя (нужно тянуть, т.к. тот, что в authentication без hibernate proxy)
@@ -43,7 +42,7 @@ public class QuestionController {
         PageQuestionDTO pageDTO = new PageQuestionDTO();
         pageDTO.setTitle(theme.getTitle());
         pageDTO.setInstruction(theme.getInstruction());
-        pageDTO.setText(question.getText());
+        pageDTO.setText(question.getQuestionText());
         pageDTO.setQuestionId(question.getId());
         pageDTO.setStudentName(student.getFirstName() + " " + student.getLastName());
         pageDTO.setAnswersCount(student.getAnswers().size());

@@ -19,6 +19,10 @@ public class QuestionService {
         return question;
     }
 
+    public void deleteById(Long id) {
+        questionRepository.deleteById(id);
+    }
+
     public QuestionEntity create(QuestionCreateDTO createDTO) {
         QuestionEntity question = questionMapper.map(createDTO);
         questionRepository.save(question);

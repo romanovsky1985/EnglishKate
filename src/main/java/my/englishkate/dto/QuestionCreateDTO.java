@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QuestionCreateDTO {
     @NotBlank
-    private String text;
+    private String questionText;
 
     @NotNull
-    private String answer;
+    private String answerText;
 
     @NotNull
-    private Long ThemeId;
+    private Long themeId;
 }

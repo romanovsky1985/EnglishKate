@@ -11,9 +11,9 @@ public class QuestionEntity implements BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String text;
+    private String questionText;
 
-    private String answer;
+    private String answerText;
 
     @ManyToOne
     private ThemeEntity theme;
