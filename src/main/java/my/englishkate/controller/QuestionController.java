@@ -1,8 +1,6 @@
 package my.englishkate.controller;
 
 import my.englishkate.dto.PageQuestionDTO;
-import my.englishkate.dto.QuestionOpenDTO;
-import my.englishkate.dto.ThemeOpenDTO;
 import my.englishkate.entity.AnswerEntity;
 import my.englishkate.entity.QuestionEntity;
 import my.englishkate.entity.StudentEntity;
@@ -16,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Random;
 
@@ -37,11 +34,11 @@ public class QuestionController {
     @GetMapping("")
     public String getRandomQuestion(Model model) {
         Random rand = new Random();
-        //System.out.println("DEBUG: start form random question");
+        // тянем из базы текущего пользователя (нужно тянуть, т.к. тот, что в authentication без hibernate proxy)
+        // тянем темы этого пользователя и для одной из них тянем список вопросов
         StudentEntity student = studentService.getById(studentService.getCurrentStudentId());
         ThemeEntity theme = student.getThemes().get(rand.nextInt(student.getThemes().size()));
         QuestionEntity question = theme.getQuestions().get(rand.nextInt(theme.getQuestions().size()));
-        //System.out.println("DEBUG: end form random question");
 
         PageQuestionDTO pageDTO = new PageQuestionDTO();
         pageDTO.setTitle(theme.getTitle());
@@ -54,10 +51,6 @@ public class QuestionController {
                 (int)student.getAnswers().stream().filter(AnswerEntity::getResult).count());
         model.addAttribute("pageDTO", pageDTO);
         return "question";
-
-
-
-
     }
 
 }
