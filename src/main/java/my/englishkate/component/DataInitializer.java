@@ -35,7 +35,7 @@ public class DataInitializer implements ApplicationRunner {
                 new TeacherCreateDTO("Анна", "Петрова", "qwerty", "teacher_Anna", true));
 
         ThemeEntity animalTheme = themeService.create(
-                new ThemeCreateDTO("Набор слов \"животные\"", "Укажите перевод:"));
+                new ThemeCreateDTO(teacher.getId(), "Набор слов \"животные\"", "Укажите перевод:"));
         questionService.create(new QuestionCreateDTO("cat", "кошка", animalTheme.getId()));
         questionService.create(new QuestionCreateDTO("dog", "собака", animalTheme.getId()));
         questionService.create(new QuestionCreateDTO("mouse", "мышь", animalTheme.getId()));
@@ -44,7 +44,7 @@ public class DataInitializer implements ApplicationRunner {
 
 
         ThemeEntity colorTheme = themeService.create(
-                new ThemeCreateDTO("Набор слов \"цвета\"", "Укажите перевод:"));
+                new ThemeCreateDTO(teacher.getId(), "Набор слов \"цвета\"", "Укажите перевод:"));
         questionService.create(new QuestionCreateDTO("blue", "синий", colorTheme.getId()));
         questionService.create(new QuestionCreateDTO("red", "красный", colorTheme.getId()));
         questionService.create(new QuestionCreateDTO("yellow", "желтый", colorTheme.getId()));
