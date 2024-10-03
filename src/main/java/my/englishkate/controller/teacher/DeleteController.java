@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(path = "/delete")
+@RequestMapping(path = "teacher/delete")
 public class DeleteController {
     @Autowired
     private QuestionService questionService;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/create")
+@RequestMapping("teacher/create")
 public class CreateController {
     @Autowired
     private QuestionService questionService;

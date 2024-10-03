@@ -2,11 +2,14 @@ package my.englishkate.component;
 
 import my.englishkate.dto.QuestionCreateDTO;
 import my.englishkate.dto.StudentCreateDTO;
+import my.englishkate.dto.TeacherCreateDTO;
 import my.englishkate.dto.ThemeCreateDTO;
 import my.englishkate.entity.StudentEntity;
+import my.englishkate.entity.TeacherEntity;
 import my.englishkate.entity.ThemeEntity;
 import my.englishkate.service.QuestionService;
 import my.englishkate.service.StudentService;
+import my.englishkate.service.TeacherService;
 import my.englishkate.service.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -22,10 +25,15 @@ public class DataInitializer implements ApplicationRunner {
     private QuestionService questionService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private TeacherService teacherService;
 
     @Override
     @Transactional
     public void run(ApplicationArguments args) {
+        TeacherEntity teacher = teacherService.create(
+                new TeacherCreateDTO("Анна", "Петрова", "qwerty", "teacher_Anna", true));
+
         ThemeEntity animalTheme = themeService.create(
                 new ThemeCreateDTO("Набор слов \"животные\"", "Укажите перевод:"));
         questionService.create(new QuestionCreateDTO("cat", "кошка", animalTheme.getId()));
@@ -44,7 +52,7 @@ public class DataInitializer implements ApplicationRunner {
         questionService.create(new QuestionCreateDTO("white", "белый", colorTheme.getId()));
 
         StudentEntity student = studentService.create(
-                new StudentCreateDTO("Иван", "Иванов", "qwerty", "test", true));
+                new StudentCreateDTO("Иван", "Иванов", "qwerty", "student_Ivan", true));
         studentService.addTheme(student.getId(), animalTheme.getId());
         studentService.addTheme(student.getId(), colorTheme.getId());
         studentService.addTheme(student.getId(), colorTheme.getId());

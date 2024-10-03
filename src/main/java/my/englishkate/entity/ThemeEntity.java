@@ -18,6 +18,9 @@ public class ThemeEntity implements BaseEntity {
 
     private String instruction;
 
+    @ManyToOne
+    private TeacherEntity teacher;
+
     @OneToMany(mappedBy = "theme")
     private List<QuestionEntity> questions;
 
