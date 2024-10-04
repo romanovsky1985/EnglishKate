@@ -10,7 +10,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDetailsServiceImpl implements UserDetailsManager {
+public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     StudentService studentService;
     @Autowired
@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsManager {
         } catch (Exception ignored) {};
         throw new UsernameNotFoundException(username);
     }
-
+/*
     @Override
     public void createUser(UserDetails userDetails) {
         throw new UnsupportedOperationException();
@@ -51,4 +51,5 @@ public class UserDetailsServiceImpl implements UserDetailsManager {
     public boolean userExists(String username) {
         throw new UnsupportedOperationException();
     }
+*/
 }

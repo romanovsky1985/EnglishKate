@@ -7,10 +7,10 @@
 <body>
   EnglishKate
   <p th:text="'username = ' + ${username}"></p>
-  <form method="POST" th:action="@{'/logout'}">
+  <form method="POST" action="/logout">
     <button type="submit">Выход</button>
   </form>
-  <form method="post" th:action="@{/security/login}">
+  <form method="POST" action="/login">
       <input type="text" name="username" placeholder="username"><br>
       <input type="password" name="password" placeholder="password"><br>
       <button type="submit">Вход</button>

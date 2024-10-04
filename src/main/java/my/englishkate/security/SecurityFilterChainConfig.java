@@ -24,30 +24,28 @@ public class SecurityFilterChainConfig {
                         .requestMatchers("/teacher/**").hasAuthority("TEACHER")
                         .anyRequest().permitAll()
                 )
-/*
+
                 .formLogin(formLogin -> formLogin
                         .usernameParameter("username")
                         .passwordParameter("password")
                         .loginPage("/")
-                        .loginProcessingUrl("/security/login")
-                        .successForwardUrl("/security/login/ok")
-                        .failureForwardUrl("/security/login/fail")
+                        .loginProcessingUrl("/login")
+                        .successForwardUrl("/login/ok")
+                        .failureForwardUrl("/login/fail")
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        //.addLogoutHandler(new HeaderWriterLogoutHandler(
-                        //        new ClearSiteDataHeaderWriter(ClearSiteDataHeaderWriter.Directive.ALL)))
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .logoutSuccessUrl("/")
                         .permitAll()
                 )
-*/
+
 
                 .headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .httpBasic(Customizer.withDefaults())
+                //.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                //.httpBasic(Customizer.withDefaults())
                 .build();
     }
 }

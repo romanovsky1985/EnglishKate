@@ -19,14 +19,14 @@ public class IndexController {
         return "index.html";
     }
 
-    @GetMapping(path = "security/login/ok")
+    @PostMapping(path = "login/ok")
     public String loginOk() {
-        return "redirect:/index.html";
+        return "redirect:/";
     }
 
-    @GetMapping(path = "security/login/fail")
+    @PostMapping(path = "login/fail")
     public String loginFail() {
-        return "redirect:/index.html";
+        return "redirect:/";
     }
 
 
