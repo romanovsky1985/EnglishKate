@@ -6,7 +6,7 @@ import my.englishkate.dto.QuestionOpenDTO;
 import java.util.List;
 
 @Data
-public class ThemePageDTO {
+public class QuestionsPage {
     private String themeTitle;
     private String themeInstruction;
     private Long themeId;

@@ -2,7 +2,6 @@ package my.englishkate.controller.teacher;
 
 import my.englishkate.dto.QuestionCreateDTO;
 import my.englishkate.dto.ThemeCreateDTO;
-import my.englishkate.entity.QuestionEntity;
 import my.englishkate.service.QuestionService;
 import my.englishkate.service.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;

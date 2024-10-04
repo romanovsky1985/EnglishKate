@@ -21,7 +21,7 @@ public class AnswerService {
 
     public AnswerEntity create(AnswerCreateDTO createDTO) {
         AnswerEntity answer = answerMapper.map(createDTO);
-        boolean result = answer.getAnswer().equals(answer.getQuestion().getAnswerText());
+        boolean result = answer.getAnswerText().equals(answer.getQuestion().getAnswerText());
         answer.setResult(result);
         answerRepository.save(answer);
         return answer;

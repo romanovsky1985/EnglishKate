@@ -22,7 +22,7 @@ public class AnswerEntity implements BaseEntity {
     @ManyToOne
     private StudentEntity student;
 
-    private String answer;
+    private String answerText;
 
     private Boolean result;
 

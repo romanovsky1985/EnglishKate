@@ -16,7 +16,7 @@ public class SecurityFilterChainConfig {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/english/**").authenticated()
+                        .requestMatchers("/student/**").hasAuthority("STUDENT")
                         .requestMatchers("/teacher/**").hasAuthority("TEACHER")
                         .anyRequest().permitAll()
                 )

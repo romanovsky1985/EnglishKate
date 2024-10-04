@@ -1,7 +1,7 @@
 package my.englishkate.controller.teacher;
 
-import my.englishkate.dto.page.ThemePageDTO;
-import my.englishkate.dto.page.ThemesPageDTO;
+import my.englishkate.dto.page.QuestionsPage;
+import my.englishkate.dto.page.ThemesPage;
 import my.englishkate.entity.ThemeEntity;
 import my.englishkate.entity.TeacherEntity;
 import my.englishkate.mapper.QuestionMapper;
@@ -34,20 +34,20 @@ public class ThemeController {
     public String showTheme(Model model, @PathVariable Long id) {
         ThemeEntity theme = themeService.getById(id);
 
-        ThemePageDTO pageDTO = new ThemePageDTO();
+        QuestionsPage pageDTO = new QuestionsPage();
         pageDTO.setThemeTitle(theme.getTitle());
         pageDTO.setThemeInstruction(theme.getInstruction());
         pageDTO.setThemeId(theme.getId());
         pageDTO.setQuestions(theme.getQuestions().stream().map(questionMapper::map).toList());
         model.addAttribute("pageDTO", pageDTO);
-        return "teacher/theme_questions";
+        return "teacher/questions.html";
     }
 
     @GetMapping(path = "")
     public String showThemes(Model model) {
         TeacherEntity teacher = teacherService.getById(teacherService.getCurrentTeacherId());
 
-        ThemesPageDTO pageDTO = new ThemesPageDTO();
+        ThemesPage pageDTO = new ThemesPage();
         pageDTO.setTeacherName(teacher.getFirstName() + " " + teacher.getLastName());
         pageDTO.setTeacherId(teacher.getId());
         pageDTO.setThemes(teacher.getThemes().stream().map(themeMapper::map).toList());

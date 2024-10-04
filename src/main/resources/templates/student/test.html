@@ -7,9 +7,11 @@
 <body>
   <h1 align="center" th:utext = "${pageDTO.title}"></h1>
   <h3 th:utext = "'<i>' + ${pageDTO.instruction} + '</i>'"></h3>
-  <h3 th:utext = "${pageDTO.text}"></h3>
-  <form method="POST" th:action="@{'/english/answer/' + ${pageDTO.questionId}}">
-      <input type="text" name="answer" placeholder="введите ответ" autofocus autocomplete="off"></input><br>
+  <h3 th:utext = "${pageDTO.questionText}"></h3>
+  <form method="POST" th:action="@{'/student/answer'}">
+      <input type="text" name="answerText" placeholder="введите ответ" autofocus autocomplete="off"><br>
+      <input type="hidden" name="questionId" th:value="${pageDTO.questionId}">
+      <input type="hidden" name="studentId" th:value="${pageDTO.studentId}">
       <br>
       <button type="submit">Ответить</button>
   </form>

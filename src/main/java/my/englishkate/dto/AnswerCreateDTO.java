@@ -15,5 +15,5 @@ public class AnswerCreateDTO {
     @NotNull
     private Long studentId;
 
-    private String answer;
+    private String answerText;
 }

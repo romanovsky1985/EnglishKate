@@ -6,7 +6,7 @@ import my.englishkate.dto.ThemeOpenDTO;
 import java.util.List;
 
 @Data
-public class ThemesPageDTO {
+public class ThemesPage {
     private String teacherName;
     private Long teacherId;
 
