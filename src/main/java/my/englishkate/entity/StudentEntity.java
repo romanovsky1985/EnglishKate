@@ -40,6 +40,9 @@ public class StudentEntity implements BaseEntity, UserDetails {
             inverseJoinColumns = @JoinColumn(name = "theme_id"))
     private List<ThemeEntity> themes = new ArrayList<>();
 
+    @ManyToOne
+    private TeacherEntity teacher;
+
     @Override
     public String getPassword() {
         return password;

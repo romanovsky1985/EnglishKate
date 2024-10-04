@@ -34,6 +34,9 @@ public class TeacherEntity implements BaseEntity, UserDetails {
     @OneToMany(mappedBy = "teacher")
     private List<ThemeEntity> themes;
 
+    @OneToMany(mappedBy = "teacher")
+    private List<StudentEntity> students;
+
     @Override
     public String getPassword() {
         return password;

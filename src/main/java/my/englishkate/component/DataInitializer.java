@@ -32,7 +32,7 @@ public class DataInitializer implements ApplicationRunner {
     @Transactional
     public void run(ApplicationArguments args) {
         TeacherEntity teacher = teacherService.create(
-                new TeacherCreateDTO("Анна", "Петрова", "qwerty", "teacher_Anna", true));
+                new TeacherCreateDTO("Анна", "Петрова", "qwerty", "teacher_anna", true));
 
         ThemeEntity animalTheme = themeService.create(
                 new ThemeCreateDTO(teacher.getId(), "Набор слов \"животные\"", "Укажите перевод:"));
@@ -52,7 +52,7 @@ public class DataInitializer implements ApplicationRunner {
         questionService.create(new QuestionCreateDTO("white", "белый", colorTheme.getId()));
 
         StudentEntity student = studentService.create(
-                new StudentCreateDTO("Иван", "Иванов", "qwerty", "student_Ivan", true));
+                new StudentCreateDTO(teacher.getId(), "Иван", "Иванов", "qwerty", "student_ivan", true));
         studentService.addTheme(student.getId(), animalTheme.getId());
         studentService.addTheme(student.getId(), colorTheme.getId());
         studentService.addTheme(student.getId(), colorTheme.getId());
