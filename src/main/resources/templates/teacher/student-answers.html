@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question</title>
+</head>
+<body>
+  <h1 align="center" th:text="${pageDTO.studentName} + ' - Ответы'"></h1>
+
+  <form method="POST" th:action="@{'/teacher/students/' + ${pageDTO.studentId} + '/answers/clear'}">
+    <button type="sumbmit">Очистить</button>
+  </form>
+  <br>
+  <table border="1">
+      <tr>
+          <th>Номер</th>
+          <th>Вопрос</th>
+          <th>Ответ</th>
+          <th></tm>
+      </tr>
+      <tr th:each="answer : ${pageDTO.answers}" th:bgcolor="${answer.result} ? 'white' : 'pink'">
+          <td th:text="${answer.id}"></td>
+          <td th:text="${answer.questionText}"></td>
+          <td th:text="${answer.answerText}"></td>
+          <td th:text="${answer.result}"></td>
+      </tr>
+  </table>
+
+
+</body>
+</html>

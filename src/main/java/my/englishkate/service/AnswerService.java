@@ -2,9 +2,11 @@ package my.englishkate.service;
 
 import my.englishkate.dto.AnswerCreateDTO;
 import my.englishkate.entity.AnswerEntity;
+import my.englishkate.entity.StudentEntity;
 import my.englishkate.mapper.AnswerMapper;
 import my.englishkate.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,5 +27,10 @@ public class AnswerService {
         answer.setResult(result);
         answerRepository.save(answer);
         return answer;
+    }
+
+    @Transactional
+    public void deleteByStudent(StudentEntity student) {
+        answerRepository.deleteByStudent(student);
     }
 }
