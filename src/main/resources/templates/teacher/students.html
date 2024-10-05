@@ -12,13 +12,19 @@
           <th>Номер</th>
           <th>Ученик</th>
           <th></th>
+          <th></th>
       </tr>
       <tr th:each="student : ${pageDTO.students}">
           <td th:text="${student.id}"></td>
           <td th:text="${student.firstName} + ' ' + ${student.lastName}"></td>
           <td>
-              <form method="GET" th:action="@{'/teacher/students/' + ${student.id}}">
+              <form method="GET" th:action="@{'/teacher/students/' + ${student.id} + '/answers'}">
                   <button type="submit">Ответы</button>
+              </form>
+          </td>
+          <td>
+              <form method="GET" th:action="@{'/teacher/students/' + ${student.id} + '/themes'}">
+                   <button type="submit">Темы</button>
               </form>
           </td>
       </tr>

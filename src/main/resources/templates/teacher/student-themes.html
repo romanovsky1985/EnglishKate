@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question</title>
+</head>
+<body>
+  <h1 align="center" th:text="${pageDTO.studentName} + ' - Темы'"></h1>
+
+  <form method="POST" th:action="@{'/teacher/students/' + ${pageDTO.studentId} + '/themes/append'}"}>
+    <select name="themeId">
+      <option th:each="theme : ${pageDTO.teacherThemes}" th:value="${theme.id}" th:text="${theme.title}"></option>
+    </select>
+    <br>
+    <button type="submit">Добавить</button>
+  </form>
+  <br>
+  <table border="1">
+      <tr>
+          <th>Номер</th>
+          <th>Тема</th>
+          <th></th>
+      </tr>
+      <tr th:each="theme : ${pageDTO.themes}">
+          <td th:text="${theme.id}"></td>
+          <td th:text="${theme.title}"></td>
+          <td>
+              <form method="POST" th:action="@{'/teacher/students/' + ${pageDTO.studentId} + '/themes/remove/' + ${theme.id}}">
+                  <button type="submit">Убрать</button>
+              </form>
+          </td>
+      </tr>
+  </table>
+
+
+</body>
+</html>

@@ -3,18 +3,22 @@ package my.englishkate.controller.teacher;
 import my.englishkate.dto.page.QuestionsPage;
 import my.englishkate.dto.page.ThemesPage;
 import my.englishkate.dto.page.StudentsPage;
+import my.englishkate.dto.page.StudentThemesPage;
 import my.englishkate.entity.ThemeEntity;
 import my.englishkate.entity.TeacherEntity;
+import my.englishkate.entity.StudentEntity;
 import my.englishkate.mapper.QuestionMapper;
 import my.englishkate.mapper.ThemeMapper;
 import my.englishkate.mapper.TeacherMapper;
 import my.englishkate.mapper.StudentMapper;
+import my.englishkate.service.StudentService;
 import my.englishkate.service.ThemeService;
 import my.englishkate.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,38 +32,41 @@ public class StudentsController {
     @Autowired
     private TeacherMapper teacherMapper;
     @Autowired
+    private StudentService studentService;
+    @Autowired
     private StudentMapper studentMapper;
     @Autowired
     private QuestionMapper questionMapper;
     @Autowired
     private TeacherService teacherService;
 
-/*
-    @GetMapping(path = "/{id}")
-    public String showTheme(Model model, @PathVariable Long id) {
-        ThemeEntity theme = themeService.getById(id);
-
-        QuestionsPage pageDTO = new QuestionsPage();
-        pageDTO.setThemeTitle(theme.getTitle());
-        pageDTO.setThemeInstruction(theme.getInstruction());
-        pageDTO.setThemeId(theme.getId());
-        pageDTO.setQuestions(theme.getQuestions().stream().map(questionMapper::map).toList());
-        model.addAttribute("pageDTO", pageDTO);
-        return "teacher/questions.html";
-    }
-
-    @GetMapping(path = "")
-    public String showThemes(Model model) {
+    @GetMapping(path = "/{id}/themes")
+    public String showStudentThemes(Model model, @PathVariable Long id) {
+        StudentEntity student = studentService.getById(id);
         TeacherEntity teacher = teacherService.getById(teacherService.getCurrentTeacherId());
 
-        ThemesPage pageDTO = new ThemesPage();
-        pageDTO.setTeacherName(teacher.getFirstName() + " " + teacher.getLastName());
-        pageDTO.setTeacherId(teacher.getId());
-        pageDTO.setThemes(teacher.getThemes().stream().map(themeMapper::map).toList());
+        StudentThemesPage pageDTO = new StudentThemesPage();
+        pageDTO.setStudentName(student.getFirstName() + " " + student.getLastName());
+        pageDTO.setStudentId(student.getId());
+        pageDTO.setThemes(student.getThemes().stream().map(themeMapper::map).toList());
+        pageDTO.setTeacherThemes(teacher.getThemes().stream().map(themeMapper::map).toList());
+
         model.addAttribute("pageDTO", pageDTO);
-        return "teacher/themes.html";
+        return "teacher/student-themes.html";
     }
-*/
+
+    @PostMapping(path = "/{studentId}/themes/remove/{themeId}")
+    public String removeTheme(@PathVariable Long studentId, @PathVariable Long themeId) {
+        studentService.removeTheme(studentId, themeId);
+        return "redirect:/teacher/students/" + studentId + "/themes";
+    }
+
+    @PostMapping(path = "/{studentId}/themes/append")
+    public String appendTheme(@PathVariable Long studentId, Long themeId) {
+        studentService.addTheme(studentId, themeId);
+        return "redirect:/teacher/students/" + studentId + "/themes";
+    }
+
 
     @GetMapping(path = " ")
     public String showStudents(Model model) {

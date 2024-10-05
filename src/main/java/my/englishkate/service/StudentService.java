@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService {
     @Autowired
@@ -48,6 +50,16 @@ public class StudentService {
         StudentEntity student = studentRepository.findById(studentId).orElseThrow();
         ThemeEntity theme = themeService.getById(themeId);
         student.getThemes().add(theme);
+        studentRepository.save(student);
+    }
+
+    public void removeTheme(Long studentId, Long themeId) {
+        StudentEntity student = studentRepository.findById(studentId).orElseThrow();
+        List<ThemeEntity> themes = student.getThemes();
+        themes.stream()
+                .filter(theme -> theme.getId() == themeId)
+                .findFirst()
+                .ifPresent(themes::remove);
         studentRepository.save(student);
     }
 }
