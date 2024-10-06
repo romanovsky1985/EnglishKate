@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html th:replace="~{layout :: layout(~{::title}, ~{::section})}">
 <head>
     <meta charset="UTF-8">
-    <title>Question</title>
+    <title>Тест</title>
 </head>
 <body>
+  <section>
   <h1 align="center" th:utext = "${pageDTO.title}"></h1>
   <h3 th:utext = "'<i>' + ${pageDTO.instruction} + '</i>'"></h3>
   <h3 th:utext = "${pageDTO.questionText}"></h3>
@@ -20,5 +21,6 @@
     <h3 th:utext = "'Всего ответов: ' + ${pageDTO.answersCount}">Всего ответов:</h3>
     <h3 th:utext = "'Из низ ошибок: ' + ${pageDTO.wrongCount}">Из них ошибок:</h3>
   </font>
+  </section>
 </body>
 </html>

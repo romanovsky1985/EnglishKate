@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru" th:fragment="layout (title, content)" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="${title}">Title</title>
+</head>
+<body>
+  <nav style="text-align: center;">
+    <a th:href="@{/}">Главная</a> | 
+    <a th:href="@{/teacher/students}">Ученики</a> | 
+    <a th:href="@{/teacher/themes}">Темы</a> | 
+    <a th:href="@{/student/test}">Тест</a>
+  </nav>
+  <hr>
+  <br>
+  <div th:replace="${content}">
+  </div>
+</body>
+</html>

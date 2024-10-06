@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{layout :: layout(~{::title}, ~{::section})}">
 <head>
     <meta charset="UTF-8">
-    <title>Question</title>
+    <title>Темы ученика</title>
 </head>
 <body>
+  <section>
   <h1 align="center" th:text="${pageDTO.studentName} + ' - Темы'"></h1>
 
   <form method="POST" th:action="@{'/teacher/students/' + ${pageDTO.studentId} + '/themes/append'}"}>
@@ -31,7 +32,6 @@
           </td>
       </tr>
   </table>
-
-
+  </section>
 </body>
 </html>

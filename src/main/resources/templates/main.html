@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html th:replace="~{ layout :: layout(~{::title}, ~{::section}) }">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+</head>
+<body>
+  <section>
+    <div th:if="${pageDTO.authority} == 'TEACHER' or ${pageDTO.authority} == 'STUDENT'" style="text-align: center;">
+      <i>Привет, </i><span th:text="${pageDTO.username}"></span><br>
+      <i>Вы авторизованы как </i> <span th:text="${pageDTO.authority}"></span><br>
+      <br>
+      <form method="POST" th:action="@{/logout}">
+        <button type="submit">Выход</button>
+      </form>
+    </div>
+    <div th:unless="${pageDTO.authority} == 'TEACHER' or ${pageDTO.authority} == 'STUDENT'" style="text-align: center;">
+      <i>Требуется вход в систему</i><br>
+      <br>
+      <form method="POST" th:action="@{/login}">
+        <input type="text" name="username" placeholder="username"><br>
+        <input type="password" name="password" placeholder="password"><br>
+        <br>
+        <button type="submit">Вход</button>
+      </form>
+    </div>
+  </div>
+  </section>
+</body>
+</html>
