@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title th:replace="${title}">Title</title>
+    <style>
+      body {
+        text-align: center;
+        color: #0F3560;
+        background-color: #F3F5F7;
+        font-size: x-large;
+      }
+      a {
+        text-decoration: none;
+        font-size: x-large;
+        color: #0f3560;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
 </head>
 <body>
-  <nav style="text-align: center;">
+  <nav>
     <a th:href="@{/}">Главная</a> | 
     <a th:href="@{/teacher/students}">Ученики</a> | 
     <a th:href="@{/teacher/themes}">Темы</a> | 
