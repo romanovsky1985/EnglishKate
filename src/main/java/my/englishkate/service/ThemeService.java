@@ -2,6 +2,7 @@ package my.englishkate.service;
 
 import my.englishkate.dto.ThemeCreateDTO;
 import my.englishkate.entity.ThemeEntity;
+import my.englishkate.exception.ResourceNotFoundException;
 import my.englishkate.mapper.ThemeMapper;
 import my.englishkate.repository.ThemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class ThemeService {
     private ThemeMapper themeMapper;
 
     public ThemeEntity getById(Long id) {
-        ThemeEntity theme = themeRepository.findById(id).orElseThrow();
+        ThemeEntity theme = themeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Тема не найдена"));
         return theme;
     }
 
