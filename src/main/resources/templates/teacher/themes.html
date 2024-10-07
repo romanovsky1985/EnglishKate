@@ -8,7 +8,7 @@
   <section>
   <h1 align="center" th:utext = "${pageDTO.teacherName}">Название темы</h1>
 
-  <form method="POST" th:action="@{'/teacher/create/theme'}">
+  <form method="POST" th:action="@{/teacher/themes/create}">
       <input type="text" name="title" placeholder="Тема" autocomplete="off"><br>
       <input type="text" name="instruction" placeholder="Указание" autocomplete="off"><br>
       <input type="hidden" name="teacherId" th:value="${pageDTO.teacherId}"><br>
@@ -28,12 +28,12 @@
           <td th:text="${theme.title}"></td>
           <td th:text="${theme.instruction}"></td>
           <td>
-              <form method="GET" th:action="@{'/teacher/themes/' + ${theme.id}}">
+              <form method="GET" th:action="@{'/teacher/themes/' + ${theme.id} + '/questions'}">
                   <button type="submit">Редактировать</button>
               </form>
           </td>
           <td>
-              <form method="POST" th:action="@{'/teacher/delete/theme/' + ${theme.id}}">
+              <form method="POST" th:action="@{'/teacher/themes/' + ${theme.id} + '/delete'}">
                   <button type="submit">Удалить</button>
               </form>
           </td>

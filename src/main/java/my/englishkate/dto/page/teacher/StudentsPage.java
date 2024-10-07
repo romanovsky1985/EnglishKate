@@ -1,4 +1,4 @@
-package my.englishkate.dto.page;
+package my.englishkate.dto.page.teacher;
 
 import lombok.Data;
 import my.englishkate.dto.StudentOpenDTO;

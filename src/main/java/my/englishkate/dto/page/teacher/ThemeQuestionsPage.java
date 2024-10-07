@@ -1,4 +1,4 @@
-package my.englishkate.dto.page;
+package my.englishkate.dto.page.teacher;
 
 import lombok.Data;
 import my.englishkate.dto.QuestionOpenDTO;
@@ -6,7 +6,7 @@ import my.englishkate.dto.QuestionOpenDTO;
 import java.util.List;
 
 @Data
-public class QuestionsPage {
+public class ThemeQuestionsPage {
     private String themeTitle;
     private String themeInstruction;
     private Long themeId;

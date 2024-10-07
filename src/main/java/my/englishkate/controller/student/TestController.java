@@ -1,6 +1,6 @@
 package my.englishkate.controller.student;
 
-import my.englishkate.dto.page.TestPage;
+import my.englishkate.dto.page.student.TestPage;
 import my.englishkate.entity.AnswerEntity;
 import my.englishkate.entity.QuestionEntity;
 import my.englishkate.entity.StudentEntity;

@@ -35,16 +35,16 @@ public class DataInitializer implements ApplicationRunner {
                 new TeacherCreateDTO("Анна", "Петрова", "qwerty", "teacher_anna", true));
 
         ThemeEntity animalTheme = themeService.create(
-                new ThemeCreateDTO(teacher.getId(), "Набор слов \"животные\"", "Укажите перевод:"));
-        questionService.create(new QuestionCreateDTO("cat", "кошка", animalTheme.getId()));
-        questionService.create(new QuestionCreateDTO("dog", "собака", animalTheme.getId()));
-        questionService.create(new QuestionCreateDTO("mouse", "мышь", animalTheme.getId()));
-        questionService.create(new QuestionCreateDTO("lion", "лев", animalTheme.getId()));
-        questionService.create(new QuestionCreateDTO("pig", "свинья", animalTheme.getId()));
+                new ThemeCreateDTO(teacher.getId(), "Набор слов \"животные (рус)\"", "Укажите английский перевод"));
+        questionService.create(new QuestionCreateDTO("кошка", "cat", animalTheme.getId()));
+        questionService.create(new QuestionCreateDTO("собака", "dog", animalTheme.getId()));
+        questionService.create(new QuestionCreateDTO("мышь", "mouse", animalTheme.getId()));
+        questionService.create(new QuestionCreateDTO("лев", "lion", animalTheme.getId()));
+        questionService.create(new QuestionCreateDTO("свинья", "pig", animalTheme.getId()));
 
 
         ThemeEntity colorTheme = themeService.create(
-                new ThemeCreateDTO(teacher.getId(), "Набор слов \"цвета\"", "Укажите перевод:"));
+                new ThemeCreateDTO(teacher.getId(), "Набор слов \"цвета (анг)\"", "Укажите русский перевод"));
         questionService.create(new QuestionCreateDTO("blue", "синий", colorTheme.getId()));
         questionService.create(new QuestionCreateDTO("red", "красный", colorTheme.getId()));
         questionService.create(new QuestionCreateDTO("yellow", "желтый", colorTheme.getId()));
